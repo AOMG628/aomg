@@ -1,0 +1,23 @@
+import random
+import string
+
+def generate_password(length, upper, lower, numbers, symbols):
+    # Create pools of characters
+    upper_chars = string.ascii_uppercase if upper else ''
+    lower_chars = string.ascii_lowercase if lower else ''
+    number_chars = string.digits if numbers else ''
+    symbol_chars = string.punctuation if symbols else ''
+    
+    # Combine all characters
+    all_chars = upper_chars + lower_chars + number_chars + symbol_chars
+    
+    # Ensure the character pool is not empty
+    if not all_chars:
+        return "Please enable at least one character type."
+    
+    # Generate the password
+    password = ''.join(random.choice(all_chars) for _ in range(length))
+    return password
+
+# Example usage:
+print(generate_password(length=12, upper=True, lower=True, numbers=True, symbols=True))
